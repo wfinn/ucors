@@ -20,12 +20,17 @@ import (
 
 var cookie string
 var printonly bool
+var onlyone bool
+var attackerdomain string
 
 func main() {
 	goroutines := flag.Uint("r", 20, "go routines")
 	flag.StringVar(&cookie, "c", "", "cookie e.g. session=abc123")
 	flag.BoolVar(&printonly, "p", false, "only print the payloads")
+	flag.BoolVar(&onlyone, "s", false, "stop scanning a url after a hit")
+	flag.StringVar(&attackerdomain, "a", "evil.com", "attacker domain")
 	flag.Parse()
+
 	urls := make(chan string)
 
 	// workers
@@ -45,10 +50,6 @@ func main() {
 
 	sc := bufio.NewScanner(os.Stdin)
 
-	// read urls from command line
-	for _, u := range flag.Args() {
-		urls <- u
-	}
 	// read urls from stdin
 	for sc.Scan() {
 		urls <- sc.Text()
@@ -117,6 +118,9 @@ func testOrigins(c *http.Client, u string) {
 
 		if acao == p {
 			fmt.Printf("Url: %s Origin: %s ACAC: %s\n", u, p, acac)
+			if onlyone {
+				break
+			}
 		}
 	}
 }
@@ -128,14 +132,14 @@ func getPermutations(raw string) ([]string, error) {
 	}
 
 	origins := []string{
-		"https://evil.com",
-		"http://evil.com",
+		"https://" + attackerdomain,
+		"http://" + attackerdomain,
 		"null",
 	}
 
 	patterns := []string{
-		"https://%s.evil.com",
-		"https://%sevil.com",
+		"https://%s." + attackerdomain,
+		"https://%s" + attackerdomain,
 		"https://xssonanysubdomain.%s",
 	}
 
@@ -167,7 +171,7 @@ func getPermutations(raw string) ([]string, error) {
 	subdomainchars := []string{",", "&", "'", "\"", ";", "!", "$", "^", "*", "(", ")", "+", "`", "~", "-", "_", "=", "|", "{", "}", "%", "%01", "%02", "%03", "%04", "%05", "%06", "%07", "%08", "%0b", "%0c", "%0e", "%0f", "%10", "%11", "%12", "%13", "%14", "%15", "%16", "%17", "%18", "%19", "%1a", "%1b", "%1c", "%1d", "%1e", "%1f", "%7f"}
 	for _, char := range subdomainchars {
 		// e.g. https://target.tld&.evil.com
-		origins = append(origins, origin+char+".evil.com")
+		origins = append(origins, origin+char+"."+attackerdomain)
 	}
 	return origins, nil
 }
