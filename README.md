@@ -31,10 +31,6 @@ Many bypasses only work in Safari.
 - https://portswigger.net/web-security/cors
 - https://www.corben.io/advanced-cors-techniques/
 
-## Resources
-- https://portswigger.net/web-security/cors
-- https://www.corben.io/advanced-cors-techniques/
-
 ---
 
 This is based on [@tomnomnom's cors-blimey](https://github.com/tomnomnom/hacks/tree/master/cors-blimey).
