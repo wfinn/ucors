@@ -22,13 +22,15 @@ var cookie string
 var printonly bool
 var onlyone bool
 var attackerdomain string
+var authheader string
 
 func main() {
 	goroutines := flag.Uint("r", 20, "go routines")
 	flag.StringVar(&cookie, "c", "", "cookie e.g. session=abc123")
 	flag.BoolVar(&printonly, "p", false, "only print the payloads")
 	flag.BoolVar(&onlyone, "s", false, "stop scanning a url after a hit")
-	flag.StringVar(&attackerdomain, "a", "evil.com", "attacker domain")
+	flag.StringVar(&attackerdomain, "d", "evil.com", "attacker domain")
+	flag.StringVar(&authheader, "a", "", "Authorization header value")
 	flag.Parse()
 
 	urls := make(chan string)
@@ -102,6 +104,9 @@ func testOrigins(c *http.Client, u string) {
 		req.Header.Set("Origin", p)
 		if cookie != "" {
 			req.Header.Set("Cookie", cookie)
+		}
+		if authheader != "" {
+			req.Header.Set("Authorization", authheader)
 		}
 		resp, err := c.Do(req)
 		if resp != nil {
