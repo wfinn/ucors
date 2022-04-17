@@ -3,6 +3,8 @@
 Tool that finds CORS misconfigurations.
 
 ```sh
+go install github.com/wfinn/ucors@latest
+
 ucors https://target.tld/endpoint
 cat urls.txt | ucors -c session=xyz123
 ```
