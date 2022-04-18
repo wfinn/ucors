@@ -1,5 +1,5 @@
-github.com/wfinn/go-tld v1.1.2-0.20220417134809-a06deb5c36b2 h1:OBa7PYxpkZH/UACSY8JGjpShZbguERU6i7yUSnC0Ea4=
-github.com/wfinn/go-tld v1.1.2-0.20220417134809-a06deb5c36b2/go.mod h1:Nhrvd70ocVU4pyGpgmdAFyD5ZhYu7e3NWZy16ZTOlcM=
+github.com/jpillora/go-tld v1.1.2-0.20220417204303-78af86fa7746 h1:dxHp5T/MRteffn4rrxkRvhWQ9c8SW98JuZhf5j7Bruk=
+github.com/jpillora/go-tld v1.1.2-0.20220417204303-78af86fa7746/go.mod h1:plzIl7xr5UWKGy7R+giuv+L/nOjrPjsoWxy/ST9OBUk=
 golang.org/x/net v0.0.0-20220225172249-27dd8689420f h1:oA4XRj0qtSt8Yo1Zms0CUlsT3KG69V2UGQWPBxujDmc=
 golang.org/x/net v0.0.0-20220225172249-27dd8689420f/go.mod h1:CfG3xpIq0wQ8r1q4Su4UZFWDARRcnwPjda9FqA0JpMk=
 golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=

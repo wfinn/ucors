@@ -15,7 +15,7 @@ import (
 	"sync"
 	"time"
 
-	tld "github.com/wfinn/go-tld"
+	tld "github.com/jpillora/go-tld"
 )
 
 var cookie string
