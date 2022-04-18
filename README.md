@@ -12,13 +12,13 @@ cat urls.txt | ucors -c session=xyz123
 Many bypasses only work in Safari.
 
 ## Payloads
-- http(s)://evil.com
+- usual reflection e.g. http(s)://evil.com
 - https://target.tld.evil.com
 - https://target.tldevil.com
 - null (sandboxed iframes can have origin null)
-- https://wwwxtarget.tld (unescaped dots in regexes)
-- https://target.wtf (different TLDs)
-- https://target.tld&.evil.com (unexpected chars in subdomains)
+- unescaped dots in regexes e.g. https://wwwxtarget.tld
+- different TLDs e.g. https://target.wtf
+- unexpected chars in subdomains https://target.tld&.evil.com
 - Bonus check: xss on subdomains https://any.target.tld
 
 ## Flags
@@ -26,7 +26,7 @@ Many bypasses only work in Safari.
 - -d evil.com to set the attacker domain
 - -s to skip the url after finding a bypass
 - -c abc=XYZ to set cookies
-- -a abcXYZ to set the Authorization header
+- -a "Bearer: abcXYZ" to set the Authorization header
 
 ## Resources
 - https://portswigger.net/web-security/cors
